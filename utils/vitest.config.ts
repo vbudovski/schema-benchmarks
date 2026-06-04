@@ -9,6 +9,7 @@ export default defineConfig({
         test: {
           name: "node",
           include: ["**/*.node.test.ts"], // not tsx - if you're using React, test in the browser
+          setupFiles: ["./test/common/setup.ts"],
         },
       },
       {
@@ -23,6 +24,7 @@ export default defineConfig({
             instances: [{ browser: "chromium" }],
             headless: !!process.env.CI,
           },
+          setupFiles: ["./test/common/setup.ts"],
         },
       },
       {

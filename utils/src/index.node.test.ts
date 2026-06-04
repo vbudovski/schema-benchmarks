@@ -13,6 +13,7 @@ import {
   getDuration,
   filterMap,
   exclude,
+  range,
 } from "./index.ts";
 
 describe("formatBytes", () => {
@@ -180,5 +181,14 @@ describe("filterMap", () => {
       return exclude;
     });
     expect(result).toEqual(["num-1", "num-2", "num-3"]);
+  });
+});
+
+describe("range", () => {
+  it("should generate a range of numbers", () => {
+    expect(range(0, 5)).toEqualSequence(0, 1, 2, 3, 4);
+    expect(range(0, 5, { step: 2 })).toEqualSequence(0, 2, 4);
+    expect(range(0, 5, { inclusive: true })).toEqualSequence(0, 1, 2, 3, 4, 5);
+    expect(range(5, 0)).toEqualSequence(5, 4, 3, 2, 1);
   });
 });

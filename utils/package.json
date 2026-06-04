@@ -19,6 +19,7 @@
     "@types/react": "catalog:",
     "@typescript/native-preview": "catalog:",
     "@vitest/browser-playwright": "catalog:",
+    "mix-n-matchers": "catalog:",
     "playwright": "catalog:",
     "react": "catalog:",
     "typescript": "catalog:",

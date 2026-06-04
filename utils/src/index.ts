@@ -339,7 +339,7 @@ function isPluralizeTuple(value: unknown): value is PluralizeTuple {
  */
 export function pluralize(strings: TemplateStringsArray, ...values: Array<unknown>) {
   let result = "";
-  for (let i = 0; i < strings.length; i++) {
+  for (const i of range(0, strings.length + 1)) {
     result += strings[i];
     if (i < values.length) {
       const value = values[i];
@@ -390,3 +390,32 @@ export function makeDisposable<T extends { unsubscribe: () => void }>(value: T):
 
 export const capitalize = <S extends string>(str: S): Capitalize<S> =>
   (str.charAt(0).toUpperCase() + str.slice(1)) as never;
+
+interface RangeOptions {
+  step?: number;
+  inclusive?: boolean;
+}
+export function* range(
+  start: number,
+  end: number,
+  { step = 1, inclusive = false }: RangeOptions = {},
+): Generator<number> {
+  if (step <= 0) {
+    throw new RangeError("step must be a positive number");
+  }
+  if (start < end) {
+    for (let i = start; i < end; i += step) {
+      yield i;
+    }
+    if (inclusive && (end - start) % step === 0) {
+      yield end;
+    }
+  } else {
+    for (let i = start; i > end; i -= step) {
+      yield i;
+    }
+    if (inclusive && (start - end) % step === 0) {
+      yield end;
+    }
+  }
+}
