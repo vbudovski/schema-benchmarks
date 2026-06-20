@@ -16,6 +16,7 @@
     "typecheck:tsc": "tsc"
   },
   "devDependencies": {
+    "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@typescript/native-preview": "catalog:",
     "@vitest/browser-playwright": "catalog:",
