@@ -21,7 +21,7 @@ export const getBlogs = (signalOpt?: AbortSignal) =>
   });
 
 export const getBlogFn = createServerFn()
-  .inputValidator(v.object({ slug: v.string() }))
+  .validator(v.object({ slug: v.string() }))
   .handler(({ data: { slug } }) => {
     const blog = allBlogs.find((blog) => blog.slug === slug);
     if (!blog) throw notFound();

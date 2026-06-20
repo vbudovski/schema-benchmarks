@@ -9,7 +9,7 @@ const themeKey = "benchmarks::theme";
 export const getThemeFn = createServerFn().handler(() => v.parse(themeSchema, getCookie(themeKey)));
 
 const themeMw = createMiddleware({ type: "function" })
-  .inputValidator(themeSchema)
+  .validator(themeSchema)
   .client(({ data: theme, next }) => {
     window.umami?.track("change_theme", { theme });
     return next();
@@ -24,7 +24,7 @@ const styleKey = "benchmarks::style";
 export const getStyleFn = createServerFn().handler(() => v.parse(styleSchema, getCookie(styleKey)));
 
 const styleMw = createMiddleware({ type: "function" })
-  .inputValidator(styleSchema)
+  .validator(styleSchema)
   .client(({ data: style, next }) => {
     window.umami?.track("change_style", { style });
     return next();
@@ -41,7 +41,7 @@ export const getNpmSiteFn = createServerFn().handler(() =>
 );
 
 const npmSiteMw = createMiddleware({ type: "function" })
-  .inputValidator(npmSiteSchema)
+  .validator(npmSiteSchema)
   .client(({ data: npmSite, next }) => {
     window.umami?.track("change_npm_site", { npmSite });
     return next();

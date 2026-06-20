@@ -18,6 +18,7 @@ const NEW_LINE_EXP = /\n(?!$)/g;
 
 let hookAdded = false;
 export const highlightCode = (
+  // oxlint-disable-next-line typescript/consistent-type-imports
   Prism: typeof import("prismjs"),
   { code, language = "typescript", lineNumbers }: HighlightInput,
 ) => {
@@ -25,7 +26,7 @@ export const highlightCode = (
   if (lineNumbers) {
     const match = code.match(NEW_LINE_EXP);
     const linesNum = match ? match.length + 1 : 1;
-    const lines = new Array(linesNum + 1).join("<span></span>");
+    const lines = Array.from({ length: linesNum + 1 }, () => "<span></span>").join("");
 
     lineNumbersWrapper = `<span aria-hidden="true" class="line-numbers-rows">${lines}</span>`;
   }
@@ -42,7 +43,7 @@ export const highlightCode = (
 };
 
 export const getHighlightedCodeFn = createServerFn({ method: "POST" })
-  .inputValidator(highlightInput)
+  .validator(highlightInput)
   .handler(({ data, data: { language } }) => {
     if (!Prism.languages[language]) loadLanguages(language);
     return highlightCode(Prism, data);
@@ -78,6 +79,7 @@ function escapeForHtml(value: string) {
 }
 
 export const highlightAnsi = (
+  // oxlint-disable-next-line typescript/consistent-type-imports
   parseAnsiSequences: (typeof import("ansi-sequence-parser"))["parseAnsiSequences"],
   { input, lineNumbers }: HighlightAnsiInput,
 ): string => {
@@ -86,7 +88,7 @@ export const highlightAnsi = (
   if (lineNumbers) {
     const match = input.match(NEW_LINE_EXP);
     const linesNum = match ? match.length + 1 : 1;
-    const lines = new Array(linesNum + 1).join("<span></span>");
+    const lines = Array.from({ length: linesNum + 1 }, () => "<span></span>").join("");
     lineNumbersWrapper = `<span aria-hidden="true" class="line-numbers-rows">${lines}</span>`;
   }
   return (
@@ -127,7 +129,7 @@ export const highlightAnsi = (
 };
 
 export const getHighlightedAnsiFn = createServerFn({ method: "POST" })
-  .inputValidator(highlightAnsiInput)
+  .validator(highlightAnsiInput)
   .handler(({ data }) => highlightAnsi(parseAnsiSequences, data));
 
 export const getHighlightedAnsi = (data: HighlightAnsiInput, signalOpt?: AbortSignal) => {
