@@ -48,8 +48,8 @@ export default defineBenchmarks({
         throws: true,
       },
       {
-        run(data) {
-          return { ok: schema.safeParse(data).ok };
+        run(data): { ok: boolean } {
+          return schema.safeParse(data);
         },
         validateResult: (result) => result.ok,
         snippet: ts`p.object(...).safeParse(data)`,
