@@ -7,6 +7,11 @@ import { getPaseriSchema } from "./index.gen";
 
 const schema = getPaseriSchema();
 
+const ok = {
+  true: { ok: true },
+  false: { ok: false },
+};
+
 export default defineBenchmarks({
   library: {
     name: "@paseri/compiler",
@@ -28,9 +33,9 @@ export default defineBenchmarks({
         run(data) {
           try {
             schema.parse(data);
-            return { ok: true };
+            return ok.true;
           } catch {
-            return { ok: false };
+            return ok.false;
           }
         },
         validateResult: (result) => result.ok,

@@ -17,6 +17,11 @@ const createStringBenchmark = (
   snippet,
 });
 
+const ok = {
+  true: { ok: true },
+  false: { ok: false },
+};
+
 const schema = getPaseriSchema();
 
 export default defineBenchmarks({
@@ -37,9 +42,9 @@ export default defineBenchmarks({
         run(data) {
           try {
             schema.parse(data);
-            return { ok: true };
+            return ok.true;
           } catch {
-            return { ok: false };
+            return ok.false;
           }
         },
         validateResult: (result) => result.ok,

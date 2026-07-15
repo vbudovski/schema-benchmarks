@@ -23,6 +23,11 @@ const parser = S.parser(getSurySchema());
 const encoder = S.encoder(S.bigint, S.string);
 const decoder = S.decoder(S.string, S.bigint);
 
+const success = {
+  true: { success: true },
+  false: { success: false },
+};
+
 export default defineBenchmarks({
   library: {
     name: "sury",
@@ -56,9 +61,9 @@ export default defineBenchmarks({
         run(data) {
           try {
             parser(data);
-            return { success: true };
+            return success.true;
           } catch {
-            return { success: false };
+            return success.false;
           }
         },
         validateResult: (result) => result.success,
