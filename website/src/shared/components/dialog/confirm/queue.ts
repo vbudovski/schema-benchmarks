@@ -19,6 +19,7 @@ class ConfirmPromise<T> implements PromiseLike<T> {
 
     this.#basePromise = basePromise;
   }
+  // oxlint-disable-next-line unicorn/no-thenable
   then<TResult1 = T, TResult2 = never>(
     onconfirm?: ((value: T) => TResult1 | PromiseLike<TResult1>) | null,
     ondeny?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null,

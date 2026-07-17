@@ -156,6 +156,7 @@ export function withTooltip<TComp extends TooltipableComponent>(
           close();
         };
       }
+      return;
     }, [targetRef, popoverRef, tooltip, id]);
     return (
       <>

@@ -58,6 +58,7 @@ export function useFocusGroup({
         },
       });
     }
+    return;
   }, [groupRef, orientation]);
   return setGroupRef;
 }

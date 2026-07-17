@@ -1,5 +1,7 @@
 import { defineConfig } from "oxlint";
 
+export const defaultPlugins = ["eslint", "typescript", "unicorn", "oxc"] as const;
+
 export const baseConfig = defineConfig({
   categories: {
     correctness: "error",
@@ -11,6 +13,7 @@ export const baseConfig = defineConfig({
     "react/react-in-jsx-scope": "off",
     "typescript/no-unsafe-type-assertion": "off",
     "typescript/consistent-type-imports": "error",
+    "typescript/consistent-return": "off",
   },
   settings: {
     vitest: {
@@ -23,7 +26,7 @@ export const baseConfig = defineConfig({
   overrides: [
     {
       files: ["**/*.test.ts", "**/*.test.tsx"],
-      plugins: ["vitest"],
+      plugins: [...defaultPlugins, "vitest"],
       rules: {
         "vitest/no-standalone-expect": [
           "error",

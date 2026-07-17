@@ -15,12 +15,11 @@ export function useElementSize({ debounce = 0 }: { debounce?: number } = {}) {
   );
   const [targetRef, setTargetRef] = useState<HTMLElement | null>(null);
   useEffect(() => {
-    if (targetRef) {
-      // set immediately
-      debouncer.fn(targetRef.getBoundingClientRect());
-      resizeObserver?.observe(targetRef);
-      return () => resizeObserver?.unobserve(targetRef);
-    }
+    if (!targetRef) return;
+    // set immediately
+    debouncer.fn(targetRef.getBoundingClientRect());
+    resizeObserver?.observe(targetRef);
+    return () => resizeObserver?.unobserve(targetRef);
   }, [resizeObserver, targetRef, debouncer]);
   return [size, setTargetRef] as const;
 }

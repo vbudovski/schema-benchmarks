@@ -77,6 +77,7 @@ function RouteComponent() {
           {formatDate(data.published)}
         </time>
       </div>
+      {/* oxlint-disable-next-line jsx-a11y/prefer-tag-over-role */}
       <div role="img" className="blog-cover" {...getTransitionStyle("cover")}>
         {typeof data.cover === "string" ? (
           <p className="typo-headline2" {...getTransitionStyle("cover-text")}>

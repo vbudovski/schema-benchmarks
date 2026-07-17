@@ -9,6 +9,7 @@ expect.addSnapshotSerializer(alignedAnsiStyleSerializer);
 
 describe.each(["locator", "element"] as const)("toBeCurrent (with %s)", (type) => {
   function expectElement(locator: Locator) {
+    // oxlint-disable-next-line vitest/valid-expect
     return expect(type === "locator" ? locator : locator.element());
   }
   it("should pass for current element", async () => {

@@ -2,7 +2,7 @@ import eslintPluginQuery from "@tanstack/eslint-plugin-query";
 import eslintPluginRouter from "@tanstack/eslint-plugin-router";
 import { defineConfig } from "oxlint";
 
-import { baseConfig } from "../oxlint.config.ts";
+import { baseConfig, defaultPlugins } from "../oxlint.config.ts";
 
 const linkComponents = [
   // "Link",
@@ -29,7 +29,7 @@ export default defineConfig({
     { name: "@tanstack/router", specifier: "@tanstack/eslint-plugin-router" },
     { name: "@tanstack/query", specifier: "@tanstack/eslint-plugin-query" },
   ],
-  plugins: ["react", "jsx-a11y"],
+  plugins: [...defaultPlugins, "react", "jsx-a11y"],
   settings: {
     "jsx-a11y": {
       components: {

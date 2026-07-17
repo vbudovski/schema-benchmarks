@@ -12,10 +12,11 @@ export interface RadioProps extends ComponentPropsWithRef<"input"> {
 export function Radio({ className, haptic = true, ...props }: RadioProps) {
   const haptics = useWebHaptics();
   return (
+    // oxlint-disable-next-line jsx-a11y/click-events-have-key-events jsx-a11y/no-noninteractive-element-interactions
     <label
       {...cls({ extra: className })}
       onClick={() => {
-        if (haptic) haptics.trigger(typeof haptic === "boolean" ? undefined : haptic);
+        if (haptic) void haptics.trigger(typeof haptic === "boolean" ? undefined : haptic);
       }}
     >
       <input type="radio" {...props} />

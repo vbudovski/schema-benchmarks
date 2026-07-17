@@ -9,6 +9,7 @@ expect.addSnapshotSerializer(alignedAnsiStyleSerializer);
 
 describe.each(["locator", "element"] as const)("toBePressed (with %s)", (type) => {
   function expectElement(locator: Locator) {
+    // oxlint-disable-next-line vitest/valid-expect
     return expect(type === "locator" ? locator : locator.element());
   }
   it("should pass for pressed button", async () => {
@@ -44,7 +45,7 @@ describe.each(["locator", "element"] as const)("toBePressed (with %s)", (type) =
   it("should fail for non-button", async () => {
     await page.render(<div>Pressed</div>);
     const div = page.getByText("Pressed");
-    expect(() => expectElement(div).toBePressed()).toThrowErrorMatchingSnapshot();
-    expect(() => expectElement(div).not.toBePressed()).toThrowErrorMatchingSnapshot();
+    expect(() => expectElement(div).toBePressed()).toThrowErrorMatchingSnapshot("pressed");
+    expect(() => expectElement(div).not.toBePressed()).toThrowErrorMatchingSnapshot("not pressed");
   });
 });

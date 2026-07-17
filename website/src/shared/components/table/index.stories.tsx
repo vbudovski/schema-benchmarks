@@ -10,6 +10,7 @@ const meta = preview.meta({
     <table>
       <thead>
         <tr>
+          {/* oxlint-disable-next-line jsx-a11y/control-has-associated-label */}
           <th></th>
           <th>Name</th>
           <th className="numeric">Age</th>

@@ -33,7 +33,7 @@ export function PageFilterTextField<LinkOptions>({
   const navigate = useNavigate();
   const debouncedOnChange = useDebouncedCallback(
     (event: ChangeEvent<HTMLInputElement, HTMLInputElement>) => {
-      navigate({ ...getLinkOptions(event), replace: true });
+      void navigate({ ...getLinkOptions(event), replace: true });
     },
     { wait: 200 },
   );
@@ -48,7 +48,9 @@ export function PageFilterTextField<LinkOptions>({
         aria-labelledby={titleId}
         value={value}
         onChange={(event) => {
-          setValue(event.target.valueAsNumber);
+          setValue(
+            typeof searchValue === "number" ? event.target.valueAsNumber : event.target.value,
+          );
           debouncedOnChange(event);
         }}
       />

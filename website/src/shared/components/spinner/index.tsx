@@ -22,6 +22,7 @@ export function Spinner({
   return (
     <div
       {...props}
+      // oxlint-disable-next-line jsx-a11y/prefer-tag-over-role
       role="progressbar"
       {...cls({
         modifiers: { "inherit-color": inheritColor },

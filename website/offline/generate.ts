@@ -56,6 +56,7 @@ const vite = await createServer({
 try {
   const { default: Root } = (await vite.ssrLoadModule(
     "/offline/root.tsx",
+    // oxlint-disable-next-line typescript/consistent-type-imports
   )) as typeof import("./root.tsx");
   const rootHtml = renderToStaticMarkup(createElement(Root));
   const html = await fs.readFile(htmlFile, "utf8");

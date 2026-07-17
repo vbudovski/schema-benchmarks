@@ -48,6 +48,7 @@ export function BlogCard({ blog }: BlogCardProps) {
         <h2 className="typo-headline5" {...getTransitionStyle("title")}>
           {blog.title}
         </h2>
+        {/* oxlint-disable-next-line jsx-a11y/prefer-tag-over-role */}
         <div role="img" className="blog-cover" {...getTransitionStyle("cover")}>
           {typeof blog.cover === "string" ? (
             <p className="typo-headline2" {...getTransitionStyle("cover-text")}>

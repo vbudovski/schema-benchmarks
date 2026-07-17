@@ -38,6 +38,7 @@ function BaseSidebar({
         },
       });
     }
+    return;
   }, [setOpen, isModal]);
 
   return (
